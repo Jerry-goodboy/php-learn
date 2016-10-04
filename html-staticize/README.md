@@ -1,10 +1,10 @@
 ### Implementation Rationale
-- file_put_contents()
+- `file_put_contents()`
 - php built-in output_buffering
-    - ob_start()
-    - ob_get_contents()
-    - ob_clean()
-    - ob_get_clean()
+    - `ob_start()`
+    - `ob_get_contents()`
+    - `ob_clean()`
+    - `ob_get_clean()`
 
 ### how to trigger
 - Add cache time on the page
@@ -21,7 +21,7 @@
 - crontab command using on linux
     - code 
     ```
-    crontab -e
+    lcd@monster$ crontab -e
     ```
     ```bash
     */1 * * * * php staticize.php

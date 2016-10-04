@@ -19,7 +19,7 @@
 </head>
 <body>
     <form action="./form.php" method="post">
-        <p>pic: <img src="./captcha.php?r=<?php echo rand();?>" alt="captcha" border="1" width="100px" height="30px" > </p> 
+        <p>pic: <img id="captcha_img" src="./captcha.php?r=<?php echo rand();?>" alt="captcha" border="1" width="100px" height="30px" > <a href="javascript:void(0)" onclick="document.getElementById('captcha_img').src='./captcha.php?r='+Math.random()">change another</a>  </p> 
         <p>input: <input type="text" name="captcha_code" value="" > </p>
         <p> <input type="submit" value="submit" > </p>  
     </form>

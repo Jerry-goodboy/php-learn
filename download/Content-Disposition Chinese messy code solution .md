@@ -1,7 +1,8 @@
 ### 正确处理浏览器在下载文件时HTTP头的编码问题（Content-Disposition）
 
 #### 原文链接
-[IE浏览器中文网站](http://www.iefans.net/xiazai-wenjian-http-bianma-content-disposition/)
+<a href="http://www.iefans.net/xiazai-wenjian-http-bianma-content-disposition/" target="_blank">IE浏览器中文网站</a>
+
 
 最近在做项目时遇到了一个 case ：需要实现一个强制在浏览器中的下载功能（即强制让浏览器弹出下载对话框），并且文件名必须保持和用户之前上传时相同（可能包含非 ASCII 字符）。 前一个需求很容易实现：使用 HTTP Header 的 Content-Disposition: attachment 即可，还可以配合 Content-Type: application/octet-stream 来确保万无一失。而后一个需求就比较蛋疼了，牵扯到 Header 的编码问题（文件名是作为 filename 参数放在 Content-Disposition 里面的）。众所周知， HTTP Header 中的 Content-Type 可以指定内容的编码，可 Header 本身的编码又该如何制定？甚至， Header 究竟是否允许非 ASCII 编码呢？ 如果放任编码问题不管，那么恭喜你，你一定会遇到在某个系统及浏览器下下载文件时文件名乱码的情况。如果你尝试搜索解决，那么再一次恭喜你，你会找到一堆自相矛盾的解决方案（我可以负责任地告诉你，其中的99%都是不符合标准的 trick 罢了）。让我们来看看到底应该如何优雅完美地解决这个问题吧！ 为了探索这个问题，我走了不少弯路。从自己尝试，到 Google 、百度（分别尝试过中英文搜索），再到阅读 Discuz 等经典项目的源码，众说纷纭、莫衷一是。最后我才想到回归 RFC ，从标准文档中找办法，果然有所收获。由于探究过程实在太曲折，我就先把标准做法写下来。
 应该这样设置 Content-Disposition ：
